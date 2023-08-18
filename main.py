@@ -9,14 +9,6 @@ screen.title("Snake Game Time")
 screen.tracer(0)
 
 # Create Snake Body
-# x = 0
-# for i in range(3):
-#     snake = Turtle(shape="square")
-#     snake.color("white")
-#     snake.setx(x)
-#     print(snake.pos())
-#     x += -20
-
 starting_positions = [(0, 0), (-20, 0), (-40, 0)]
 segments = []
 
@@ -39,8 +31,4 @@ while game_is_on:
         segments[seg_num].goto(new_x, new_y)
 
     segments[0].forward(20)
-
-
-
-screen.exitonclick()
 
