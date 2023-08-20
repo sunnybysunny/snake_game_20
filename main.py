@@ -3,6 +3,7 @@ import time
 
 from snake import Snake
 from food import Food
+from scoreboard import ScoreBoard
 
 # Screen setup
 screen = Screen()
@@ -14,6 +15,7 @@ screen.tracer(0)
 # create a snake and food objects
 snake = Snake()
 food = Food()
+score = ScoreBoard()
 
 # listen for keystrokes
 screen.listen()
@@ -28,6 +30,16 @@ while game_is_on:
     snake.move()
     screen.update()
     time.sleep(.1)
+
+    # Detect collision with food
+    if snake.head.distance(food) < 15:
+        food.refresh()
+        score.add_point()
+
+    # Detect collision with wall.
+    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
+        score.game_over()
+        game_is_on = False
 
 
 screen.exitonclick()
